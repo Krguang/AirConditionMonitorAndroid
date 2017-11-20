@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/background_color"
+	android:fadingEdge="vertical"
+	android:scrollbars="vertical"
+	>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:scrollbars="vertical" >
+
+
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp"
+			>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				>
+				<TextView
+					android:id="@+id/WenDu"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="实时温度："
+					android:textSize="30dp"
+					/>
+
+				<TextView
+					android:id="@+id/tv_WenDuZhi"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentTop="true"
+					android:layout_toEndOf="@+id/WenDu"
+					android:layout_toRightOf="@+id/WenDu"
+					android:text="25.0℃"
+					android:textSize="30dp" />
+			</RelativeLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp"
+			>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				>
+				<TextView
+					android:id="@+id/shidu"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="实时湿度："
+					android:textSize="30dp"
+					/>
+
+				<TextView
+					android:id="@+id/tv_ShiDuZhi"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentTop="true"
+					android:layout_toEndOf="@+id/shidu"
+					android:layout_toRightOf="@+id/shidu"
+					android:text="50.0%"
+					android:textSize="30dp" />
+			</RelativeLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp"
+			>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				>
+				<TextView
+					android:id="@+id/LengShuiFa"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="冷水阀开度："
+					android:textSize="25dp"
+					/>
+				<TextView
+					android:id="@+id/tv_data_LengShuiFa"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_toRightOf="@id/LengShuiFa"
+					android:textSize="25dp"
+					android:text="00.0%"/>
+			</RelativeLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp"
+			>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				>
+
+				<TextView
+					android:id="@+id/ReShuiFa"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentLeft="true"
+					android:layout_alignParentStart="true"
+					android:layout_alignParentTop="true"
+					android:text="热水阀开度："
+					android:textSize="25dp" />
+				<TextView
+					android:id="@+id/tv_data_ReShuiFa"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_toRightOf="@id/ReShuiFa"
+					android:textSize="25dp"
+					android:text="00.0%"/>
+			</RelativeLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp"
+			>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				>
+				<TextView
+					android:id="@+id/JiaShuiQi"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="加湿器开度："
+					android:textSize="25dp"
+					/>
+				<TextView
+					android:id="@+id/tv_data_JiaShuiQi"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_toRightOf="@id/JiaShuiQi"
+					android:textSize="25dp"
+					android:text="00.0%"/>
+			</RelativeLayout>
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="bottom"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp"
+			>
+
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_weight="0"
+				>
+				<ImageButton
+					android:id="@+id/bt_JiZuYunXing"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/gray_led"
+					/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="机组运行 "/>
+			</LinearLayout>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_weight="0"
+				>
+				<ImageButton
+					android:id="@+id/bt_ZhiBanYunXing"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/gray_led"
+					/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="值班运行 "/>
+			</LinearLayout>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_weight="0"
+				>
+				<ImageButton
+					android:id="@+id/bt_FuYaYunXing"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/gray_led"
+					/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="负压运行 "/>
+			</LinearLayout>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_weight="0"
+				>
+				<ImageButton
+					android:id="@+id/bt_JiZuGuZhang"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/gray_led"
+					/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="机组故障 "/>
+			</LinearLayout>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				/>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				android:layout_weight="0"
+				>
+				<ImageButton
+					android:id="@+id/bt_GaoXiaoZuSe"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:background="@drawable/gray_led"
+					/>
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="高效阻塞 "/>
+			</LinearLayout>
+
+		</LinearLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp">
+
+			<Button
+				android:id="@+id/bt_ShiDuZhi_down"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:textSize="25dp"
+				android:text="-"/>
+			<TextView
+				android:id="@+id/tv_ShiDuSet"
+				android:text="50.0"
+				android:textSize="25dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				/>
+			<Button
+				android:id="@+id/bt_ShiDuZhi_up"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:textSize="25dp"
+				android:text="+"/>
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp">
+
+			<Button
+				android:id="@+id/bt_WenDuZhi_down"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:textSize="25dp"
+				android:text="-"/>
+			<TextView
+				android:id="@+id/tv_WenDuSet"
+				android:text="25.0"
+				android:textSize="25dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				/>
+			<Button
+				android:id="@+id/bt_WenDuZhi_up"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:textSize="25dp"
+				android:text="+"/>
+		</RelativeLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:gravity="bottom"
+			android:layout_marginBottom="1dp"
+			android:background="@color/white"
+			android:padding="5dp"
+			>
+			<Button
+				android:id="@+id/bt_SW_KongTiao"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="空调启停"
+				android:layout_weight="0"
+				/>
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+
+			<Button
+				android:id="@+id/bt_SW_ZhiBan"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="值班运行"
+				android:layout_weight="0"
+				/>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"/>
+			<Button
+				android:id="@+id/bt_SW_FuYa"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="负压运行"
+				android:layout_weight="0"
+				/>
+
+		</LinearLayout>
+
+
+
+	</LinearLayout>
+
+</LinearLayout>
