@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/background_color"
+	android:background="#ffffff"
 	android:fadingEdge="vertical"
 	android:scrollbars="vertical"
 	>
@@ -15,6 +15,12 @@
 
 
 
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -22,6 +28,7 @@
 			android:layout_marginBottom="1dp"
 			android:background="@color/white"
 			android:padding="5dp"
+			android:layout_weight="0"
 			>
 			<RelativeLayout
 				android:layout_width="match_parent"
@@ -48,6 +55,12 @@
 			</RelativeLayout>
 		</LinearLayout>
 
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -55,6 +68,7 @@
 			android:layout_marginBottom="1dp"
 			android:background="@color/white"
 			android:padding="5dp"
+			android:layout_weight="0"
 			>
 			<RelativeLayout
 				android:layout_width="match_parent"
@@ -81,6 +95,12 @@
 			</RelativeLayout>
 		</LinearLayout>
 
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -88,6 +108,7 @@
 			android:layout_marginBottom="1dp"
 			android:background="@color/white"
 			android:padding="5dp"
+			android:layout_weight="0"
 			>
 			<RelativeLayout
 				android:layout_width="match_parent"
@@ -111,6 +132,12 @@
 			</RelativeLayout>
 		</LinearLayout>
 
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -118,6 +145,7 @@
 			android:layout_marginBottom="1dp"
 			android:background="@color/white"
 			android:padding="5dp"
+			android:layout_weight="0"
 			>
 			<RelativeLayout
 				android:layout_width="match_parent"
@@ -144,6 +172,12 @@
 			</RelativeLayout>
 		</LinearLayout>
 
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -151,6 +185,7 @@
 			android:layout_marginBottom="1dp"
 			android:background="@color/white"
 			android:padding="5dp"
+			android:layout_weight="0"
 			>
 			<RelativeLayout
 				android:layout_width="match_parent"
@@ -174,6 +209,12 @@
 			</RelativeLayout>
 		</LinearLayout>
 
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
+
 		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -182,6 +223,7 @@
 			android:layout_marginBottom="1dp"
 			android:background="@color/white"
 			android:padding="5dp"
+			android:layout_weight="0"
 			>
 
 
@@ -294,43 +336,19 @@
 
 		</LinearLayout>
 
-		<RelativeLayout
+		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="1dp"
-			android:background="@color/white"
-			android:padding="5dp">
-
-			<Button
-				android:id="@+id/bt_ShiDuZhi_down"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_alignParentLeft="true"
-				android:textSize="25dp"
-				android:text="-"/>
-			<TextView
-				android:id="@+id/tv_ShiDuSet"
-				android:text="50.0"
-				android:textSize="25dp"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_centerInParent="true"
-				/>
-			<Button
-				android:id="@+id/bt_ShiDuZhi_up"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_alignParentRight="true"
-				android:textSize="25dp"
-				android:text="+"/>
-		</RelativeLayout>
+			android:layout_weight="1"
+			/>
 
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="1dp"
 			android:background="@color/white"
-			android:padding="5dp">
+			android:layout_marginBottom="1dp"
+			android:padding="5dp"
+			android:layout_weight="0">
 
 			<Button
 				android:id="@+id/bt_WenDuZhi_down"
@@ -338,7 +356,8 @@
 				android:layout_height="wrap_content"
 				android:layout_alignParentLeft="true"
 				android:textSize="25dp"
-				android:text="-"/>
+				android:text="-"
+				/>
 			<TextView
 				android:id="@+id/tv_WenDuSet"
 				android:text="25.0"
@@ -353,8 +372,57 @@
 				android:layout_height="wrap_content"
 				android:layout_alignParentRight="true"
 				android:textSize="25dp"
-				android:text="+"/>
+				android:text="+"
+				/>
 		</RelativeLayout>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@color/white"
+			android:layout_marginBottom="1dp"
+			android:padding="5dp"
+			android:layout_weight="0"
+			>
+			<Button
+				android:id="@+id/bt_ShiDuZhi_down"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:textSize="25dp"
+				android:text="-"
+				/>
+			<TextView
+				android:id="@+id/tv_ShiDuSet"
+				android:text="50.0"
+				android:textSize="25dp"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerInParent="true"
+				/>
+			<Button
+				android:id="@+id/bt_ShiDuZhi_up"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:textSize="25dp"
+				android:text="+"
+				/>
+		</RelativeLayout>
+
+
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -364,6 +432,7 @@
 			android:layout_marginBottom="1dp"
 			android:background="@color/white"
 			android:padding="5dp"
+			android:layout_weight="0"
 			>
 			<Button
 				android:id="@+id/bt_SW_KongTiao"
@@ -399,7 +468,11 @@
 
 		</LinearLayout>
 
-
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			/>
 
 	</LinearLayout>
 

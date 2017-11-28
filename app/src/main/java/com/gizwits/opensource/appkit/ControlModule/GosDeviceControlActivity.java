@@ -46,8 +46,23 @@ import static com.gizwits.opensource.appkit.R.drawable.green_led;
 public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		implements OnClickListener {
 
-	private int wenDuValue=250;
-	private int shiDuValue=500;
+	java.text.DecimalFormat oneDot=new java.text.DecimalFormat("00.0");
+
+	private float fWenDuZhi;
+	private float fShiDuZhi;
+	private float fWenDuSet;
+	private float fShiDuSet;
+	private float fLengShuiFa;
+	private float fReShuiFa;
+	private float fJiaShiQi;
+
+	String disWenDuZhi;
+	String disShiDuZhi;
+	String disWenDuSet;
+	String disShiDuSet;
+	String disLengShuiFa;
+	String disReShuiFa;
+	String disJiaShiQi;
 
 	/** 设备列表传入的设备变量 */
 	private GizWifiDevice mDevice;
@@ -306,6 +321,22 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	 */
 	protected void updateUI() {
 
+		fWenDuZhi=data_WenDuZhi;
+		fShiDuZhi=data_ShiDuZhi;
+		fWenDuSet=data_WenDuSet;
+		fShiDuSet=data_ShiDuSet;
+		fLengShuiFa=data_LengShuiFa;
+		fReShuiFa=data_ReShuiFa;
+		fJiaShiQi=data_JiaShuiQi;
+
+		disWenDuZhi=oneDot.format(fWenDuZhi/10);
+		disShiDuZhi=oneDot.format(fShiDuZhi/10);
+		disWenDuSet=oneDot.format(fWenDuSet/10);
+		disShiDuSet=oneDot.format(fShiDuSet/10);
+		disLengShuiFa=oneDot.format(fLengShuiFa/10);
+		disReShuiFa=oneDot.format(fReShuiFa/10);
+		disJiaShiQi=oneDot.format(fJiaShiQi/10);
+
 		if (data_ZS_JiZuYunXing){
 			bt_JiZuYunXing.setBackgroundResource(R.drawable.green_led);
 		}else {
@@ -332,13 +363,13 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 			bt_GaoXiaoZuSe.setBackgroundResource(R.drawable.gray_led);
 		}
 
-		tv_data_WenDuSet.setText(data_WenDuSet+"");
-		tv_data_ShiDuSet.setText(data_ShiDuSet+"");
-		tv_data_WenDuZhi.setText(data_WenDuZhi+"");
-		tv_data_ShiDuZhi.setText(data_ShiDuZhi+"");
-		tv_data_LengShuiFa.setText(data_LengShuiFa+"");
-		tv_data_ReShuiFa.setText(data_ReShuiFa+"");
-		tv_data_JiaShuiQi.setText(data_JiaShuiQi+"");
+		tv_data_WenDuSet.setText(disWenDuSet+"℃");
+		tv_data_ShiDuSet.setText(disShiDuSet+"%");
+		tv_data_WenDuZhi.setText(disWenDuZhi+"℃");
+		tv_data_ShiDuZhi.setText(disShiDuZhi+"%");
+		tv_data_LengShuiFa.setText(disLengShuiFa+"%");
+		tv_data_ReShuiFa.setText(disReShuiFa+"%");
+		tv_data_JiaShuiQi.setText(disJiaShiQi+"%");
 	
 	}
 

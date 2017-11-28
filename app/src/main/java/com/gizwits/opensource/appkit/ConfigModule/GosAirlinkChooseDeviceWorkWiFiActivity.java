@@ -200,7 +200,7 @@ public class GosAirlinkChooseDeviceWorkWiFiActivity extends GosConfigModuleBaseA
 			workSSIDPsw = etPsw.getText().toString();
 
 			if (TextUtils.isEmpty(workSSID)) {
-				Toast.makeText(GosAirlinkChooseDeviceWorkWiFiActivity.this, R.string.choose_wifi_list_title, toastTime)
+				Toast.makeText(GosAirlinkChooseDeviceWorkWiFiActivity.this, R.string.choose_wifi_list_title, Toast.LENGTH_LONG)
 						.show();
 				return;
 			}
@@ -339,7 +339,7 @@ public class GosAirlinkChooseDeviceWorkWiFiActivity extends GosConfigModuleBaseA
 			workSSIDPsw = etPsw.getText().toString();
 
 			if (TextUtils.isEmpty(workSSID)) {
-				Toast.makeText(GosAirlinkChooseDeviceWorkWiFiActivity.this, R.string.choose_wifi_list_title, toastTime)
+				Toast.makeText(GosAirlinkChooseDeviceWorkWiFiActivity.this, R.string.choose_wifi_list_title, Toast.LENGTH_LONG)
 						.show();
 
 			} else {
