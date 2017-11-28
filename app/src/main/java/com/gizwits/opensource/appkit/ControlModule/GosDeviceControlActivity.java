@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -41,10 +42,9 @@ import com.gizwits.opensource.appkit.view.HexWatcher;
 
 import org.w3c.dom.Text;
 
-import static com.gizwits.opensource.appkit.R.drawable.green_led;
 
 public class GosDeviceControlActivity extends GosControlModuleBaseActivity
-		implements OnClickListener {
+		implements OnClickListener,View.OnTouchListener {
 
 	java.text.DecimalFormat oneDot=new java.text.DecimalFormat("00.0");
 
@@ -86,6 +86,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	private TextView tv_data_LengShuiFa;
 	private TextView tv_data_ReShuiFa;
 	private TextView tv_data_JiaShuiQi;
+
+
 
 	private enum handler_key {
 
@@ -152,7 +154,7 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		tv_data_ShiDuSet= (TextView) findViewById(R.id.tv_ShiDuSet);
 		tv_data_LengShuiFa = (TextView) findViewById(R.id.tv_data_LengShuiFa);
 		tv_data_ReShuiFa = (TextView) findViewById(R.id.tv_data_ReShuiFa);
-		tv_data_JiaShuiQi = (TextView) findViewById(R.id.tv_data_JiaShuiQi);
+		tv_data_JiaShuiQi = (TextView) findViewById(R.id.tv_data_JiaShiQi);
 	}
 
 	private void initEvent() {
@@ -165,6 +167,13 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		bt_ShiDuZhi_down.setOnClickListener(this);
 		bt_SHiDuZhi_up.setOnClickListener(this);
 
+		bt_KongTiao.setOnTouchListener(this);
+		bt_ZhiBan.setOnTouchListener(this);
+		bt_FuYa.setOnTouchListener(this);
+		bt_WenDuZhi_down.setOnTouchListener(this);
+		bt_WenDuZhi_up.setOnTouchListener(this);
+		bt_ShiDuZhi_down.setOnTouchListener(this);
+		bt_SHiDuZhi_up.setOnTouchListener(this);
 	}
 
 	private void initDevice() {
@@ -197,7 +206,80 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	}
 
 	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		switch (v.getId()){
+			case R.id.bt_SW_KongTiao:
+				if (event.getAction()==MotionEvent.ACTION_DOWN){
+					v.setBackgroundResource(R.drawable.bt_kongtiao_down);
+					break;
+				}else if (event.getAction()==MotionEvent.ACTION_UP){
+					v.setBackgroundResource(R.drawable.bt_kongtiao_up);
+					break;
+				}
+
+			case R.id.bt_SW_ZhiBan:
+				if (event.getAction()==MotionEvent.ACTION_DOWN){
+					v.setBackgroundResource(R.drawable.bt_zhiban_down);
+					break;
+				}else if (event.getAction()==MotionEvent.ACTION_UP){
+					v.setBackgroundResource(R.drawable.bt_zhiban_up);
+					break;
+				}
+
+			case R.id.bt_SW_FuYa:
+				if (event.getAction()==MotionEvent.ACTION_DOWN){
+					v.setBackgroundResource(R.drawable.bt_fuya_down);
+					break;
+				}else if (event.getAction()==MotionEvent.ACTION_UP){
+					v.setBackgroundResource(R.drawable.bt_fuya_up);
+					break;
+				}
+
+			case R.id.bt_WenDuZhi_down:
+				if (event.getAction()==MotionEvent.ACTION_DOWN){
+					v.setBackgroundResource(R.drawable.bt_down_down);
+					break;
+				}else if (event.getAction()==MotionEvent.ACTION_UP){
+					v.setBackgroundResource(R.drawable.bt_down_up);
+					break;
+				}
+
+			case R.id.bt_WenDuZhi_up:
+				if (event.getAction()==MotionEvent.ACTION_DOWN){
+					v.setBackgroundResource(R.drawable.bt_up_down);
+					break;
+				}else if (event.getAction()==MotionEvent.ACTION_UP){
+					v.setBackgroundResource(R.drawable.bt_up_up);
+					break;
+				}
+
+			case R.id.bt_ShiDuZhi_down:
+				if (event.getAction()==MotionEvent.ACTION_DOWN){
+					v.setBackgroundResource(R.drawable.bt_down_down);
+					break;
+				}else if (event.getAction()==MotionEvent.ACTION_UP){
+					v.setBackgroundResource(R.drawable.bt_down_up);
+					break;
+				}
+
+			case R.id.bt_ShiDuZhi_up:
+				if (event.getAction()==MotionEvent.ACTION_DOWN){
+					v.setBackgroundResource(R.drawable.bt_up_down);
+					break;
+				}else if (event.getAction()==MotionEvent.ACTION_UP){
+					v.setBackgroundResource(R.drawable.bt_up_up);
+					break;
+				}
+			default:
+				break;
+		}
+		return false;
+	}
+
+	@Override
 	public void onClick(View v) {
+
+
 		switch (v.getId()) {
 			case R.id.bt_SW_KongTiao:
 				if (data_SW_KongTiao){
@@ -257,6 +339,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 			default:
 			break;
 		}
+
+
 	}
 
 /*
@@ -338,29 +422,29 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		disJiaShiQi=oneDot.format(fJiaShiQi/10);
 
 		if (data_ZS_JiZuYunXing){
-			bt_JiZuYunXing.setBackgroundResource(R.drawable.green_led);
+			bt_JiZuYunXing.setBackgroundResource(R.drawable.led_green);
 		}else {
-			bt_JiZuYunXing.setBackgroundResource(R.drawable.gray_led);
+			bt_JiZuYunXing.setBackgroundResource(R.drawable.led_gray);
 		}
 		if (data_ZS_ZhiBanYunXing){
-			bt_ZhiBanYunXing.setBackgroundResource(R.drawable.green_led);
+			bt_ZhiBanYunXing.setBackgroundResource(R.drawable.led_green);
 		}else {
-			bt_ZhiBanYunXing.setBackgroundResource(R.drawable.gray_led);
+			bt_ZhiBanYunXing.setBackgroundResource(R.drawable.led_gray);
 		}
 		if (data_ZS_FuYaYunXing){
-			bt_FuYaYunXing.setBackgroundResource(R.drawable.green_led);
+			bt_FuYaYunXing.setBackgroundResource(R.drawable.led_green);
 		}else {
-			bt_FuYaYunXing.setBackgroundResource(R.drawable.gray_led);
+			bt_FuYaYunXing.setBackgroundResource(R.drawable.led_gray);
 		}
 		if (data_ZS_JiZuGuZhang){
-			bt_JiZuGuZhang.setBackgroundResource(R.drawable.red_led);
+			bt_JiZuGuZhang.setBackgroundResource(R.drawable.led_red);
 		}else {
-			bt_JiZuGuZhang.setBackgroundResource(R.drawable.gray_led);
+			bt_JiZuGuZhang.setBackgroundResource(R.drawable.led_gray);
 		}
 		if (data_ZS_GaoXiaoZuSe){
-			bt_GaoXiaoZuSe.setBackgroundResource(R.drawable.red_led);
+			bt_GaoXiaoZuSe.setBackgroundResource(R.drawable.led_red);
 		}else {
-			bt_GaoXiaoZuSe.setBackgroundResource(R.drawable.gray_led);
+			bt_GaoXiaoZuSe.setBackgroundResource(R.drawable.led_gray);
 		}
 
 		tv_data_WenDuSet.setText(disWenDuSet+"℃");
@@ -370,7 +454,7 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		tv_data_LengShuiFa.setText(disLengShuiFa+"%");
 		tv_data_ReShuiFa.setText(disReShuiFa+"%");
 		tv_data_JiaShuiQi.setText(disJiaShiQi+"%");
-	
+
 	}
 
 	private void setEditText(EditText et, Object value) {
