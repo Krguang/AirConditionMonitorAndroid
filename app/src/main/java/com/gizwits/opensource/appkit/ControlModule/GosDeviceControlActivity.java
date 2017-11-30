@@ -31,6 +31,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.gizwits.gizwifisdk.api.GizWifiDevice;
@@ -64,6 +66,10 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	String disReShuiFa;
 	String disJiaShiQi;
 
+
+	private int tempSetValue;
+	private int humiSetValue;
+
 	/** 设备列表传入的设备变量 */
 	private GizWifiDevice mDevice;
 
@@ -88,6 +94,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	private TextView tv_data_JiaShuiQi;
 
 
+	Timer timer1;
+	TimerTask task1;
 
 	private enum handler_key {
 
@@ -125,6 +133,20 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	};
 
 	@Override
+	protected void onStop() {
+		super.onStop();
+		if (timer1 != null) {
+			timer1.cancel();
+			timer1 = null;
+		}
+
+		if (task1 != null) {
+			task1.cancel();
+			task1 = null;
+		}
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gos_device_control);
@@ -132,6 +154,39 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		setActionBar(true, true, getDeviceName());
 		initView();
 		initEvent();
+		tempAndHumiSet();
+	}
+
+	private void tempAndHumiSet(){
+
+		tempSetValue=data_WenDuSet=250;
+		humiSetValue=data_ShiDuSet=500;
+
+		if (timer1==null){
+			timer1=new Timer();
+		}
+
+		if (task1==null){
+			task1=new TimerTask() {
+				@Override
+				public void run() {
+					if (data_WenDuSet!=tempSetValue){
+						data_WenDuSet=tempSetValue;
+						sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
+					}
+					if (data_ShiDuSet!=humiSetValue){
+						data_ShiDuSet=humiSetValue;
+						sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
+					}
+
+					Log.d("test", "run: "+"test1111111111111111111111111111111111111111");
+				}
+			};
+
+		}
+		if (task1!=null&&task1!=null){
+			timer1.schedule(task1,1000,1000);
+		}
 	}
 
 	private void initView() {
@@ -312,27 +367,27 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 					break;
 				}
 			case R.id.bt_WenDuZhi_down:
-				if (data_WenDuSet>0){
-					data_WenDuSet-=10;
+				if (tempSetValue>0){
+					tempSetValue-=10;
 				}
-				sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
+				//sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
 				break;
 			case R.id.bt_WenDuZhi_up:
-				if (data_WenDuSet<500){
-					data_WenDuSet+=10;
+				if (tempSetValue<500){
+					tempSetValue+=10;
 				}
-				sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
+				//sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
 				break;
 			case R.id.bt_ShiDuZhi_down:
-				if (data_ShiDuSet>0){
-					data_ShiDuSet-=10;
-					sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
+				if (humiSetValue>0){
+					humiSetValue-=10;
+					//sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
 				}
 				break;
 			case R.id.bt_ShiDuZhi_up:
-				if (data_ShiDuSet<999){
-					data_ShiDuSet+=10;
-					sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
+				if (humiSetValue<999){
+					humiSetValue+=10;
+					//sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
 				}
 				break;
 
@@ -407,8 +462,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 
 		fWenDuZhi=data_WenDuZhi;
 		fShiDuZhi=data_ShiDuZhi;
-		fWenDuSet=data_WenDuSet;
-		fShiDuSet=data_ShiDuSet;
+		fWenDuSet=tempSetValue;
+		fShiDuSet=humiSetValue;
 		fLengShuiFa=data_LengShuiFa;
 		fReShuiFa=data_ReShuiFa;
 		fJiaShiQi=data_JiaShuiQi;
@@ -662,6 +717,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		Log.i("liang", "接收到数据");
 		if (result == GizWifiErrorCode.GIZ_SDK_SUCCESS && dataMap.get("data") != null) {
 			getDataFromReceiveDataMap(dataMap);
+			tempSetValue=data_WenDuSet;
+			humiSetValue=data_ShiDuSet;
 			mHandler.sendEmptyMessage(handler_key.UPDATE_UI.ordinal());
 		}
 	}

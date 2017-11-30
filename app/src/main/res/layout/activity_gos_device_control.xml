@@ -17,7 +17,7 @@
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="15dp"
+			android:layout_margin="12dp"
 			>
 			<TextView
 				android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="15dp">
+			android:layout_margin="12dp">
 
 			<TextView
 
@@ -70,7 +70,7 @@
 				android:layout_alignParentEnd="true"
 				android:layout_alignParentRight="true"
 				android:layout_alignParentTop="true"
-				android:text="50%RH"
+				android:text="50%"
 				android:textColor="#ffffff"
 				android:textSize="25sp" />
 		</RelativeLayout>
@@ -83,7 +83,7 @@
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="15dp">
+			android:layout_margin="12dp">
 
 			<TextView
 
@@ -116,7 +116,7 @@
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="15dp">
+			android:layout_margin="12dp">
 
 			<TextView
 
@@ -149,7 +149,7 @@
 		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_margin="15dp">
+			android:layout_margin="12dp">
 
 			<TextView
 
@@ -186,7 +186,7 @@
 			android:textColor="#ffffff"
 			android:textSize="15dp"
 			android:gravity="center_horizontal"
-			android:layout_marginTop="50dp"
+			android:layout_marginTop="40dp"
 			/>
 		<RelativeLayout
 			android:layout_width="match_parent"
@@ -256,7 +256,7 @@
 				android:layout_centerHorizontal="true"
 				android:layout_centerVertical="true"
 				android:gravity="center_horizontal"
-				android:text="50%RH"
+				android:text="50%"
 				android:textColor="#ffffff"
 				android:textSize="20sp"
 				android:id="@+id/tv_ShiDuSet" />
