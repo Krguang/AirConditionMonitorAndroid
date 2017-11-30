@@ -66,20 +66,13 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	String disReShuiFa;
 	String disJiaShiQi;
 
-
-	private int tempSetValue;
-	private int humiSetValue;
-
 	/** 设备列表传入的设备变量 */
 	private GizWifiDevice mDevice;
 
 	private Button bt_KongTiao;
 	private Button bt_ZhiBan;
 	private Button bt_FuYa;
-	private Button bt_WenDuZhi_down;
-	private Button bt_WenDuZhi_up;
-	private Button bt_ShiDuZhi_down;
-	private Button bt_SHiDuZhi_up;
+
 	private ImageButton bt_JiZuYunXing;
 	private ImageButton bt_ZhiBanYunXing;
 	private ImageButton bt_FuYaYunXing;
@@ -87,8 +80,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	private ImageButton bt_GaoXiaoZuSe;
 	private TextView tv_data_WenDuZhi;
 	private TextView tv_data_ShiDuZhi;
-	private TextView tv_data_WenDuSet;
-	private TextView tv_data_ShiDuSet;
+	private EditText tv_data_WenDuSet;
+	private EditText tv_data_ShiDuSet;
 	private TextView tv_data_LengShuiFa;
 	private TextView tv_data_ReShuiFa;
 	private TextView tv_data_JiaShuiQi;
@@ -154,50 +147,15 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		setActionBar(true, true, getDeviceName());
 		initView();
 		initEvent();
-		tempAndHumiSet();
 	}
 
-	private void tempAndHumiSet(){
 
-		tempSetValue=data_WenDuSet=250;
-		humiSetValue=data_ShiDuSet=500;
-
-		if (timer1==null){
-			timer1=new Timer();
-		}
-
-		if (task1==null){
-			task1=new TimerTask() {
-				@Override
-				public void run() {
-					if (data_WenDuSet!=tempSetValue){
-						data_WenDuSet=tempSetValue;
-						sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
-					}
-					if (data_ShiDuSet!=humiSetValue){
-						data_ShiDuSet=humiSetValue;
-						sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
-					}
-
-					Log.d("test", "run: "+"test1111111111111111111111111111111111111111");
-				}
-			};
-
-		}
-		if (task1!=null&&task1!=null){
-			timer1.schedule(task1,1000,1000);
-		}
-	}
 
 	private void initView() {
 
 		bt_KongTiao= (Button) findViewById(R.id.bt_SW_KongTiao);
 		bt_ZhiBan= (Button) findViewById(R.id.bt_SW_ZhiBan);
 		bt_FuYa= (Button) findViewById(R.id.bt_SW_FuYa);
-		bt_WenDuZhi_down= (Button) findViewById(R.id.bt_WenDuZhi_down);
-		bt_WenDuZhi_up= (Button) findViewById(R.id.bt_WenDuZhi_up);
-		bt_ShiDuZhi_down= (Button) findViewById(R.id.bt_ShiDuZhi_down);
-		bt_SHiDuZhi_up= (Button) findViewById(R.id.bt_ShiDuZhi_up);
 		bt_JiZuYunXing= (ImageButton) findViewById(R.id.bt_JiZuYunXing);
 		bt_ZhiBanYunXing= (ImageButton) findViewById(R.id.bt_ZhiBanYunXing);
 		bt_FuYaYunXing= (ImageButton) findViewById(R.id.bt_FuYaYunXing);
@@ -205,8 +163,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		bt_GaoXiaoZuSe= (ImageButton) findViewById(R.id.bt_GaoXiaoZuSe);
 		tv_data_WenDuZhi = (TextView) findViewById(R.id.tv_WenDuZhi);
 		tv_data_ShiDuZhi = (TextView) findViewById(R.id.tv_ShiDuZhi);
-		tv_data_WenDuSet= (TextView) findViewById(R.id.tv_WenDuSet);
-		tv_data_ShiDuSet= (TextView) findViewById(R.id.tv_ShiDuSet);
+		tv_data_WenDuSet= (EditText) findViewById(R.id.tv_WenDuSet);
+		tv_data_ShiDuSet= (EditText) findViewById(R.id.tv_ShiDuSet);
 		tv_data_LengShuiFa = (TextView) findViewById(R.id.tv_data_LengShuiFa);
 		tv_data_ReShuiFa = (TextView) findViewById(R.id.tv_data_ReShuiFa);
 		tv_data_JiaShuiQi = (TextView) findViewById(R.id.tv_data_JiaShiQi);
@@ -217,18 +175,28 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		bt_KongTiao.setOnClickListener(this);
 		bt_ZhiBan.setOnClickListener(this);
 		bt_FuYa.setOnClickListener(this);
-		bt_WenDuZhi_down.setOnClickListener(this);
-		bt_WenDuZhi_up.setOnClickListener(this);
-		bt_ShiDuZhi_down.setOnClickListener(this);
-		bt_SHiDuZhi_up.setOnClickListener(this);
 
 		bt_KongTiao.setOnTouchListener(this);
 		bt_ZhiBan.setOnTouchListener(this);
 		bt_FuYa.setOnTouchListener(this);
-		bt_WenDuZhi_down.setOnTouchListener(this);
-		bt_WenDuZhi_up.setOnTouchListener(this);
-		bt_ShiDuZhi_down.setOnTouchListener(this);
-		bt_SHiDuZhi_up.setOnTouchListener(this);
+
+		tv_data_WenDuSet.setOnEditorActionListener(new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				data_WenDuSet= (int) (Double.parseDouble(tv_data_WenDuSet.getText().toString())*10.0);
+				sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
+				return false;
+			}
+		});
+
+		tv_data_ShiDuSet.setOnEditorActionListener(new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				data_ShiDuSet= (int) (Double.parseDouble(tv_data_ShiDuSet.getText().toString())*10.0);
+				sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
+				return false;
+			}
+		});
 	}
 
 	private void initDevice() {
@@ -290,41 +258,6 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 					break;
 				}
 
-			case R.id.bt_WenDuZhi_down:
-				if (event.getAction()==MotionEvent.ACTION_DOWN){
-					v.setBackgroundResource(R.drawable.bt_down_down);
-					break;
-				}else if (event.getAction()==MotionEvent.ACTION_UP){
-					v.setBackgroundResource(R.drawable.bt_down_up);
-					break;
-				}
-
-			case R.id.bt_WenDuZhi_up:
-				if (event.getAction()==MotionEvent.ACTION_DOWN){
-					v.setBackgroundResource(R.drawable.bt_up_down);
-					break;
-				}else if (event.getAction()==MotionEvent.ACTION_UP){
-					v.setBackgroundResource(R.drawable.bt_up_up);
-					break;
-				}
-
-			case R.id.bt_ShiDuZhi_down:
-				if (event.getAction()==MotionEvent.ACTION_DOWN){
-					v.setBackgroundResource(R.drawable.bt_down_down);
-					break;
-				}else if (event.getAction()==MotionEvent.ACTION_UP){
-					v.setBackgroundResource(R.drawable.bt_down_up);
-					break;
-				}
-
-			case R.id.bt_ShiDuZhi_up:
-				if (event.getAction()==MotionEvent.ACTION_DOWN){
-					v.setBackgroundResource(R.drawable.bt_up_down);
-					break;
-				}else if (event.getAction()==MotionEvent.ACTION_UP){
-					v.setBackgroundResource(R.drawable.bt_up_up);
-					break;
-				}
 			default:
 				break;
 		}
@@ -366,30 +299,6 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 					sendCommand(KEY_SW_FUYA, data_SW_FuYa);
 					break;
 				}
-			case R.id.bt_WenDuZhi_down:
-				if (tempSetValue>0){
-					tempSetValue-=10;
-				}
-				//sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
-				break;
-			case R.id.bt_WenDuZhi_up:
-				if (tempSetValue<500){
-					tempSetValue+=10;
-				}
-				//sendCommand(KEY_WENDUSET, ( data_WenDuSet+ WENDUSET_OFFSET ) * WENDUSET_RATIO + WENDUSET_ADDITION);
-				break;
-			case R.id.bt_ShiDuZhi_down:
-				if (humiSetValue>0){
-					humiSetValue-=10;
-					//sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
-				}
-				break;
-			case R.id.bt_ShiDuZhi_up:
-				if (humiSetValue<999){
-					humiSetValue+=10;
-					//sendCommand(KEY_SHIDUSET, (data_ShiDuSet + SHIDUSET_OFFSET ) * SHIDUSET_RATIO + SHIDUSET_ADDITION);
-				}
-				break;
 
 			default:
 			break;
@@ -422,6 +331,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 	 * 菜单栏
 	 * ========================================================================
 	 */
+
+	/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.device_more, menu);
@@ -454,7 +365,7 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 
 		return super.onOptionsItemSelected(item);
 	}
-
+*/
 	/**
 	 * Description:根据保存的的数据点的值来更新UI
 	 */
@@ -462,8 +373,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 
 		fWenDuZhi=data_WenDuZhi;
 		fShiDuZhi=data_ShiDuZhi;
-		fWenDuSet=tempSetValue;
-		fShiDuSet=humiSetValue;
+		fWenDuSet=data_WenDuSet;
+		fShiDuSet=data_ShiDuSet;
 		fLengShuiFa=data_LengShuiFa;
 		fReShuiFa=data_ReShuiFa;
 		fJiaShiQi=data_JiaShuiQi;
@@ -502,8 +413,8 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 			bt_GaoXiaoZuSe.setBackgroundResource(R.drawable.led_gray);
 		}
 
-		tv_data_WenDuSet.setText(disWenDuSet+"℃");
-		tv_data_ShiDuSet.setText(disShiDuSet+"%");
+		tv_data_WenDuSet.setText(disWenDuSet);
+		tv_data_ShiDuSet.setText(disShiDuSet);
 		tv_data_WenDuZhi.setText(disWenDuZhi+"℃");
 		tv_data_ShiDuZhi.setText(disShiDuZhi+"%");
 		tv_data_LengShuiFa.setText(disLengShuiFa+"%");
@@ -717,8 +628,6 @@ public class GosDeviceControlActivity extends GosControlModuleBaseActivity
 		Log.i("liang", "接收到数据");
 		if (result == GizWifiErrorCode.GIZ_SDK_SUCCESS && dataMap.get("data") != null) {
 			getDataFromReceiveDataMap(dataMap);
-			tempSetValue=data_WenDuSet;
-			humiSetValue=data_ShiDuSet;
 			mHandler.sendEmptyMessage(handler_key.UPDATE_UI.ordinal());
 		}
 	}
